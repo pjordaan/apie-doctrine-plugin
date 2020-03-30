@@ -3,8 +3,7 @@
 
 namespace W2w\Lib\ApieDoctrinePlugin\DataLayers;
 
-
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use W2w\Lib\Apie\Core\SearchFilters\SearchFilterFromMetadataTrait;
 use W2w\Lib\Apie\Core\SearchFilters\SearchFilterRequest;
 use W2w\Lib\Apie\Exceptions\ResourceNotFoundException;
@@ -18,7 +17,7 @@ class DoctrineDataLayer implements ApiResourceRetrieverInterface, ApiResourcePer
 
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ObjectManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }

@@ -5,6 +5,7 @@ namespace W2w\Lib\ApieDoctrinePlugin\ResourceFactories;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use RuntimeException;
 use W2w\Lib\Apie\Interfaces\ApiResourceFactoryInterface;
 use W2w\Lib\Apie\Interfaces\ApiResourcePersisterInterface;
@@ -14,21 +15,21 @@ use W2w\Lib\ApieDoctrinePlugin\DataLayers\DoctrineDataLayer;
 class DoctrineDataLayerFactory implements ApiResourceFactoryInterface
 {
     /**
-     * @var EntityManagerInterface
+     * @var ObjectManager
      */
     private $entityManager;
 
     /**
-     * @var EntityManagerInterface[]
+     * @var ObjectManager[]
      */
     private $additionalEntityManagers;
 
     /**
-     * @param EntityManagerInterface $entityManager
-     * @param EntityManagerInterface[] $additionalEntityManagers
+     * @param ObjectManager $entityManager
+     * @param ObjectManager[] $additionalEntityManagers
      */
     public function __construct(
-        EntityManagerInterface $entityManager,
+        ObjectManager $entityManager,
         array $additionalEntityManagers = []
     ) {
         $this->entityManager = $entityManager;

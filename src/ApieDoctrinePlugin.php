@@ -5,6 +5,8 @@ namespace W2w\Lib\ApieDoctrinePlugin;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bridge\Doctrine\PropertyInfo\DoctrineExtractor;
 use W2w\Lib\Apie\Interfaces\ApiResourceFactoryInterface;
 use W2w\Lib\Apie\PluginInterfaces\ApiResourceFactoryProviderInterface;
@@ -14,25 +16,42 @@ use W2w\Lib\ApieDoctrinePlugin\ResourceFactories\DoctrineDataLayerFactory;
 class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, PropertyInfoExtractorProviderInterface
 {
     /**
-     * @var EntityManagerInterface
+     * @var ObjectManager
      */
     private $entityManager;
 
     /**
-     * @var EntityManagerInterface[]
+     * @var ObjectManager[]
      */
     private $additionalEntityManagers;
 
     /**
-     * @param EntityManagerInterface $entityManager
-     * @param EntityManagerInterface[] $additionalEntityManagers
+     * @param ObjectManager $entityManager
+     * @param ObjectManager[] $additionalEntityManagers
      */
     public function __construct(
-        EntityManagerInterface $entityManager,
+        ObjectManager $entityManager,
         array $additionalEntityManagers = []
     ) {
         $this->entityManager = $entityManager;
         $this->additionalEntityManagers = $additionalEntityManagers;
+    }
+
+    /**
+     * Creates a ApieDoctrinePlugin from an entity manager registry.
+     *
+     * @param ManagerRegistry $registry
+     * @return ApieDoctrinePlugin
+     */
+    public static function createFromRegistry(ManagerRegistry $registry)
+    {
+        $defaultName = $registry->getDefaultManagerName();
+        $defaultManager = $registry->getManager($defaultName);
+        $otherManagers = [];
+        foreach ($registry->getManagers() as $name => $manager) {
+            $otherManagers['manager.' . $name] = $manager;
+        }
+        return new self($defaultManager, $otherManagers);
     }
 
     public function getApiResourceFactory(): ApiResourceFactoryInterface
@@ -45,11 +64,14 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Propert
      */
     private function createDoctrineExtractors(): array
     {
-        $list = [
-            new DoctrineExtractor($this->entityManager)
-        ];
+        $list = [];
+        if ($this->entityManager instanceof EntityManagerInterface) {
+            $list[] = new DoctrineExtractor($this->entityManager);
+        }
         foreach ($this->additionalEntityManagers as $entityManager) {
-            $list[] = new DoctrineExtractor($entityManager);
+            if ($entityManager instanceof EntityManagerInterface) {
+                $list[] = new DoctrineExtractor($entityManager);
+            }
         }
         return $list;
     }
