@@ -49,7 +49,7 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Propert
         $defaultManager = $registry->getManager($defaultName);
         $otherManagers = [];
         foreach ($registry->getManagers() as $name => $manager) {
-            $otherManagers['manager.' . $name] = $manager;
+            $otherManagers[$name] = $manager;
         }
         return new self($defaultManager, $otherManagers);
     }
