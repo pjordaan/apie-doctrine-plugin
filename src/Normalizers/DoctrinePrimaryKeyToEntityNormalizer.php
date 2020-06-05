@@ -7,7 +7,20 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use W2w\Lib\Apie\Exceptions\ResourceNotFoundException;
 use W2w\Lib\ApieDoctrinePlugin\Exceptions\EntityNotAllowedException;
 
-class DoctrineEntityNormalizer implements DenormalizerInterface
+/**
+ * Normalizes a primitive to an entity. If active a REST API could do:
+ *
+ * For example an entitiy that references a country entitiy can do this request
+ *
+ * {
+ *     "country": 2
+ * }
+ *
+ * To link to a country with id 2. Because of security reasons any DoctrineEntityNormalizer instance can only
+ * denormalize one specific entity. You only want to apply this to entities with public data with data that
+ * is almost never changed.
+ */
+class DoctrinePrimaryKeyToEntityNormalizer implements DenormalizerInterface
 {
     /**
      * @var string

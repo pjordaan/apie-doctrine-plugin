@@ -3,6 +3,7 @@
 
 namespace W2w\Lib\ApieDoctrinePlugin\DataLayers;
 
+use Doctrine\DBAL\Exception\ConstraintViolationException;
 use Doctrine\Persistence\ObjectManager;
 use W2w\Lib\Apie\Core\SearchFilters\SearchFilterFromMetadataTrait;
 use W2w\Lib\Apie\Core\SearchFilters\SearchFilterRequest;
@@ -62,8 +63,12 @@ class DoctrineDataLayer implements ApiResourceRetrieverInterface, ApiResourcePer
      */
     public function remove(string $resourceClass, $id, array $context)
     {
-        $this->entityManager->remove($this->retrieve($resourceClass, $id, $context));
-        $this->entityManager->flush();
+        try {
+            $this->entityManager->remove($this->retrieve($resourceClass, $id, $context));
+            $this->entityManager->flush();
+        } catch (ConstraintViolationException $foreignKeyConstraintViolationException) {
+            throw new ApieException(409, 'Can not remove ' . $id . ' as it is in use by a different resource');
+        }
     }
 
     /**

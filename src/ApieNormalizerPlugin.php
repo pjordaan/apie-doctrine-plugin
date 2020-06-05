@@ -8,7 +8,7 @@ use erasys\OpenApi\Spec\v3\Schema;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use W2w\Lib\Apie\PluginInterfaces\NormalizerProviderInterface;
 use W2w\Lib\Apie\PluginInterfaces\SchemaProviderInterface;
-use W2w\Lib\ApieDoctrinePlugin\Normalizers\DoctrineEntityNormalizer;
+use W2w\Lib\ApieDoctrinePlugin\Normalizers\DoctrinePrimaryKeyToEntityNormalizer;
 use W2w\Lib\ApieDoctrinePlugin\Schema\DoctrineEntitySchema;
 
 class ApieNormalizerPlugin implements NormalizerProviderInterface, SchemaProviderInterface
@@ -38,7 +38,7 @@ class ApieNormalizerPlugin implements NormalizerProviderInterface, SchemaProvide
         foreach ($this->classMapping as $className => $normalizer) {
             if ($normalizer instanceof DenormalizerInterface) {
                 $result[] = $normalizer;
-            } else if (is_a($normalizer, DoctrineEntityNormalizer::class, true)) {
+            } else if (is_a($normalizer, DoctrinePrimaryKeyToEntityNormalizer::class, true)) {
                 $result[] = new $normalizer($className, $this->objectManager);
             }
         }

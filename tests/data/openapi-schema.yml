@@ -1,0 +1,3312 @@
+openapi: 3.0.1
+info:
+  title: Apie
+  version: '3.0'
+paths:
+  /example:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of example'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: Example
+                  description: 'Example get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    name:
+                      type: string
+                      nullable: false
+                    slug:
+                      type: string
+                      nullable: false
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: Example
+                  description: 'Example get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    name:
+                      type: string
+                      nullable: false
+                    slug:
+                      type: string
+                      nullable: false
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - example
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+    post:
+      responses:
+        200:
+          description: 'Creates a new instance of example'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Example
+                description: 'Example get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                  slug:
+                    type: string
+                    nullable: false
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+            application/xml:
+              schema:
+                title: Example
+                description: 'Example get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                  slug:
+                    type: string
+                    nullable: false
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - example
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Example
+              description: 'Example post for groups post, write'
+              type: object
+              properties:
+                slug:
+                  type: string
+                  nullable: false
+                name:
+                  type: string
+                  nullable: false
+          application/xml:
+            schema:
+              title: Example
+              description: 'Example post for groups post, write'
+              type: object
+              properties:
+                slug:
+                  type: string
+                  nullable: false
+                name:
+                  type: string
+                  nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+  '/example/{id}':
+    get:
+      responses:
+        200:
+          description: 'Retrieves a single instance of example'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Example
+                description: 'Example get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                  slug:
+                    type: string
+                    nullable: false
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+            application/xml:
+              schema:
+                title: Example
+                description: 'Example get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                  slug:
+                    type: string
+                    nullable: false
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - example
+    put:
+      responses:
+        200:
+          description: 'Retrieves and update a single instance of example'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Example
+                description: 'Example get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                  slug:
+                    type: string
+                    nullable: false
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+            application/xml:
+              schema:
+                title: Example
+                description: 'Example get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                  slug:
+                    type: string
+                    nullable: false
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - example
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Example
+              description: 'Example put for groups put, write'
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: false
+          application/xml:
+            schema:
+              title: Example
+              description: 'Example put for groups put, write'
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+    delete:
+      responses:
+        204:
+          description: 'Deletes a single instance of example'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - example
+    parameters:
+      -
+        name: id
+        in: path
+        description: 'the id of the resource'
+        required: true
+        schema:
+          type: string
+  /relations:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of relations'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: Relations
+                  description: 'Relations get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    one_to_one:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    one_to_one_inverse:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany get for groups get, read'
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            nullable: false
+                          many_to_one:
+                            type: string
+                            format: path
+                            nullable: true
+                            example: /relations/12345
+                          name:
+                            type: string
+                            nullable: false
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        type: string
+                        format: path
+                        nullable: true
+                        example: /relation_many_to_many/12345
+                      nullable: false
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: Relations
+                  description: 'Relations get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    one_to_one:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    one_to_one_inverse:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany get for groups get, read'
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            nullable: false
+                          many_to_one:
+                            type: string
+                            format: path
+                            nullable: true
+                            example: /relations/12345
+                          name:
+                            type: string
+                            nullable: false
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        type: string
+                        format: path
+                        nullable: true
+                        example: /relation_many_to_many/12345
+                      nullable: false
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relations
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+    post:
+      responses:
+        200:
+          description: 'Creates a new instance of relations'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Relations
+                description: 'Relations get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  one_to_one:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_one_inverse:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_many:
+                    type: array
+                    items:
+                      title: RelationOneToMany
+                      description: 'RelationOneToMany get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          nullable: false
+                        many_to_one:
+                          type: string
+                          format: path
+                          nullable: true
+                          example: /relations/12345
+                        name:
+                          type: string
+                          nullable: false
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relation_many_to_many/12345
+                    nullable: false
+            application/xml:
+              schema:
+                title: Relations
+                description: 'Relations get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  one_to_one:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_one_inverse:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_many:
+                    type: array
+                    items:
+                      title: RelationOneToMany
+                      description: 'RelationOneToMany get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          nullable: false
+                        many_to_one:
+                          type: string
+                          format: path
+                          nullable: true
+                          example: /relations/12345
+                        name:
+                          type: string
+                          nullable: false
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relation_many_to_many/12345
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Relations
+              description: 'Relations post for groups post, write'
+              type: object
+              properties:
+                one_to_one:
+                  title: Relations
+                  description: 'Relations post for groups post, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_one_inverse:
+                  title: Relations
+                  description: 'Relations post for groups post, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_many:
+                  type: array
+                  items:
+                    title: RelationOneToMany
+                    description: 'RelationOneToMany post for groups post, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_one:
+                        title: Relations
+                        description: 'Relations post for groups post, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                  nullable: false
+                many_to_many:
+                  type: array
+                  items:
+                    title: RelationManyToMany
+                    description: 'RelationManyToMany post for groups post, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          properties:
+                            one_to_one:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_one_inverse:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_many:
+                              type: array
+                              items:
+                                title: RelationOneToMany
+                                description: 'RelationOneToMany post for groups post, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: RelationManyToMany
+                                description: 'RelationManyToMany post for groups post, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+          application/xml:
+            schema:
+              title: Relations
+              description: 'Relations post for groups post, write'
+              type: object
+              properties:
+                one_to_one:
+                  title: Relations
+                  description: 'Relations post for groups post, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_one_inverse:
+                  title: Relations
+                  description: 'Relations post for groups post, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups post, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups post, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_many:
+                  type: array
+                  items:
+                    title: RelationOneToMany
+                    description: 'RelationOneToMany post for groups post, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_one:
+                        title: Relations
+                        description: 'Relations post for groups post, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                  nullable: false
+                many_to_many:
+                  type: array
+                  items:
+                    title: RelationManyToMany
+                    description: 'RelationManyToMany post for groups post, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: Relations
+                          description: 'Relations post for groups post, write'
+                          type: object
+                          properties:
+                            one_to_one:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_one_inverse:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_many:
+                              type: array
+                              items:
+                                title: RelationOneToMany
+                                description: 'RelationOneToMany post for groups post, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: RelationManyToMany
+                                description: 'RelationManyToMany post for groups post, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+  '/relations/{id}':
+    get:
+      responses:
+        200:
+          description: 'Retrieves a single instance of relations'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Relations
+                description: 'Relations get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  one_to_one:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_one_inverse:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_many:
+                    type: array
+                    items:
+                      title: RelationOneToMany
+                      description: 'RelationOneToMany get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          nullable: false
+                        many_to_one:
+                          type: string
+                          format: path
+                          nullable: true
+                          example: /relations/12345
+                        name:
+                          type: string
+                          nullable: false
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relation_many_to_many/12345
+                    nullable: false
+            application/xml:
+              schema:
+                title: Relations
+                description: 'Relations get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  one_to_one:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_one_inverse:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_many:
+                    type: array
+                    items:
+                      title: RelationOneToMany
+                      description: 'RelationOneToMany get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          nullable: false
+                        many_to_one:
+                          type: string
+                          format: path
+                          nullable: true
+                          example: /relations/12345
+                        name:
+                          type: string
+                          nullable: false
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relation_many_to_many/12345
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relations
+    put:
+      responses:
+        200:
+          description: 'Retrieves and update a single instance of relations'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Relations
+                description: 'Relations get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  one_to_one:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_one_inverse:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_many:
+                    type: array
+                    items:
+                      title: RelationOneToMany
+                      description: 'RelationOneToMany get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          nullable: false
+                        many_to_one:
+                          type: string
+                          format: path
+                          nullable: true
+                          example: /relations/12345
+                        name:
+                          type: string
+                          nullable: false
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relation_many_to_many/12345
+                    nullable: false
+            application/xml:
+              schema:
+                title: Relations
+                description: 'Relations get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  one_to_one:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_one_inverse:
+                    type: string
+                    format: path
+                    nullable: true
+                    example: /relations/12345
+                  one_to_many:
+                    type: array
+                    items:
+                      title: RelationOneToMany
+                      description: 'RelationOneToMany get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          nullable: false
+                        many_to_one:
+                          type: string
+                          format: path
+                          nullable: true
+                          example: /relations/12345
+                        name:
+                          type: string
+                          nullable: false
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relation_many_to_many/12345
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: Relations
+              description: 'Relations put for groups put, write'
+              type: object
+              properties:
+                one_to_one:
+                  title: Relations
+                  description: 'Relations post for groups put, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_one_inverse:
+                  title: Relations
+                  description: 'Relations post for groups put, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_many:
+                  type: array
+                  items:
+                    title: RelationOneToMany
+                    description: 'RelationOneToMany post for groups put, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_one:
+                        title: Relations
+                        description: 'Relations post for groups put, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                  nullable: false
+                many_to_many:
+                  type: array
+                  items:
+                    title: RelationManyToMany
+                    description: 'RelationManyToMany post for groups put, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          properties:
+                            one_to_one:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_one_inverse:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_many:
+                              type: array
+                              items:
+                                title: RelationOneToMany
+                                description: 'RelationOneToMany post for groups put, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: RelationManyToMany
+                                description: 'RelationManyToMany post for groups put, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+          application/xml:
+            schema:
+              title: Relations
+              description: 'Relations put for groups put, write'
+              type: object
+              properties:
+                one_to_one:
+                  title: Relations
+                  description: 'Relations post for groups put, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_one_inverse:
+                  title: Relations
+                  description: 'Relations post for groups put, write'
+                  type: object
+                  properties:
+                    one_to_one:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_one_inverse:
+                      title: Relations
+                      description: 'Relations post for groups put, write'
+                      type: object
+                      properties:
+                        one_to_one:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_one_inverse:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          additionalProperties: true
+                        one_to_many:
+                          type: array
+                          items:
+                            title: RelationOneToMany
+                            description: 'RelationOneToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                        many_to_many:
+                          type: array
+                          items:
+                            title: RelationManyToMany
+                            description: 'RelationManyToMany post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          nullable: false
+                    one_to_many:
+                      type: array
+                      items:
+                        title: RelationOneToMany
+                        description: 'RelationOneToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        title: RelationManyToMany
+                        description: 'RelationManyToMany post for groups put, write'
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      nullable: false
+                one_to_many:
+                  type: array
+                  items:
+                    title: RelationOneToMany
+                    description: 'RelationOneToMany post for groups put, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_one:
+                        title: Relations
+                        description: 'Relations post for groups put, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                  nullable: false
+                many_to_many:
+                  type: array
+                  items:
+                    title: RelationManyToMany
+                    description: 'RelationManyToMany post for groups put, write'
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: Relations
+                          description: 'Relations post for groups put, write'
+                          type: object
+                          properties:
+                            one_to_one:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_one_inverse:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            one_to_many:
+                              type: array
+                              items:
+                                title: RelationOneToMany
+                                description: 'RelationOneToMany post for groups put, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: RelationManyToMany
+                                description: 'RelationManyToMany post for groups put, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+    delete:
+      responses:
+        204:
+          description: 'Deletes a single instance of relations'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relations
+    parameters:
+      -
+        name: id
+        in: path
+        description: 'the id of the resource'
+        required: true
+        schema:
+          type: string
+  /relation_many_to_many:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of relation_many_to_many'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: RelationManyToMany
+                  description: 'RelationManyToMany get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        type: string
+                        format: path
+                        nullable: true
+                        example: /relations/12345
+                      nullable: false
+                    name:
+                      type: string
+                      nullable: false
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: RelationManyToMany
+                  description: 'RelationManyToMany get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    many_to_many:
+                      type: array
+                      items:
+                        type: string
+                        format: path
+                        nullable: true
+                        example: /relations/12345
+                      nullable: false
+                    name:
+                      type: string
+                      nullable: false
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relation_many_to_many
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+    post:
+      responses:
+        200:
+          description: 'Creates a new instance of relation_many_to_many'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: RelationManyToMany
+                description: 'RelationManyToMany get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+            application/xml:
+              schema:
+                title: RelationManyToMany
+                description: 'RelationManyToMany get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relation_many_to_many
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: RelationManyToMany
+              description: 'RelationManyToMany post for groups post, write'
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: false
+                many_to_many:
+                  type: array
+                  items:
+                    title: Relations
+                    description: 'Relations post for groups post, write'
+                    type: object
+                    properties:
+                      one_to_one:
+                        title: Relations
+                        description: 'Relations post for groups post, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_one_inverse:
+                        title: Relations
+                        description: 'Relations post for groups post, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_many:
+                        type: array
+                        items:
+                          title: RelationOneToMany
+                          description: 'RelationOneToMany post for groups post, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_one:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: RelationManyToMany
+                          description: 'RelationManyToMany post for groups post, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: Relations
+                                description: 'Relations post for groups post, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+          application/xml:
+            schema:
+              title: RelationManyToMany
+              description: 'RelationManyToMany post for groups post, write'
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: false
+                many_to_many:
+                  type: array
+                  items:
+                    title: Relations
+                    description: 'Relations post for groups post, write'
+                    type: object
+                    properties:
+                      one_to_one:
+                        title: Relations
+                        description: 'Relations post for groups post, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_one_inverse:
+                        title: Relations
+                        description: 'Relations post for groups post, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups post, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_many:
+                        type: array
+                        items:
+                          title: RelationOneToMany
+                          description: 'RelationOneToMany post for groups post, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_one:
+                              title: Relations
+                              description: 'Relations post for groups post, write'
+                              type: object
+                              additionalProperties: true
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: RelationManyToMany
+                          description: 'RelationManyToMany post for groups post, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: Relations
+                                description: 'Relations post for groups post, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+  '/relation_many_to_many/{id}':
+    get:
+      responses:
+        200:
+          description: 'Retrieves a single instance of relation_many_to_many'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: RelationManyToMany
+                description: 'RelationManyToMany get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+            application/xml:
+              schema:
+                title: RelationManyToMany
+                description: 'RelationManyToMany get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relation_many_to_many
+    put:
+      responses:
+        200:
+          description: 'Retrieves and update a single instance of relation_many_to_many'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: RelationManyToMany
+                description: 'RelationManyToMany get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+            application/xml:
+              schema:
+                title: RelationManyToMany
+                description: 'RelationManyToMany get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  many_to_many:
+                    type: array
+                    items:
+                      type: string
+                      format: path
+                      nullable: true
+                      example: /relations/12345
+                    nullable: false
+                  name:
+                    type: string
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relation_many_to_many
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: RelationManyToMany
+              description: 'RelationManyToMany put for groups put, write'
+              type: object
+              properties:
+                many_to_many:
+                  type: array
+                  items:
+                    title: Relations
+                    description: 'Relations post for groups put, write'
+                    type: object
+                    properties:
+                      one_to_one:
+                        title: Relations
+                        description: 'Relations post for groups put, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_one_inverse:
+                        title: Relations
+                        description: 'Relations post for groups put, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_many:
+                        type: array
+                        items:
+                          title: RelationOneToMany
+                          description: 'RelationOneToMany post for groups put, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_one:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: RelationManyToMany
+                          description: 'RelationManyToMany post for groups put, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: Relations
+                                description: 'Relations post for groups put, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+          application/xml:
+            schema:
+              title: RelationManyToMany
+              description: 'RelationManyToMany put for groups put, write'
+              type: object
+              properties:
+                many_to_many:
+                  type: array
+                  items:
+                    title: Relations
+                    description: 'Relations post for groups put, write'
+                    type: object
+                    properties:
+                      one_to_one:
+                        title: Relations
+                        description: 'Relations post for groups put, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_one_inverse:
+                        title: Relations
+                        description: 'Relations post for groups put, write'
+                        type: object
+                        properties:
+                          one_to_one:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_one_inverse:
+                            title: Relations
+                            description: 'Relations post for groups put, write'
+                            type: object
+                            additionalProperties: true
+                          one_to_many:
+                            type: array
+                            items:
+                              title: RelationOneToMany
+                              description: 'RelationOneToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                          many_to_many:
+                            type: array
+                            items:
+                              title: RelationManyToMany
+                              description: 'RelationManyToMany post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                            nullable: false
+                      one_to_many:
+                        type: array
+                        items:
+                          title: RelationOneToMany
+                          description: 'RelationOneToMany post for groups put, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_one:
+                              title: Relations
+                              description: 'Relations post for groups put, write'
+                              type: object
+                              additionalProperties: true
+                        nullable: false
+                      many_to_many:
+                        type: array
+                        items:
+                          title: RelationManyToMany
+                          description: 'RelationManyToMany post for groups put, write'
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              nullable: false
+                            many_to_many:
+                              type: array
+                              items:
+                                title: Relations
+                                description: 'Relations post for groups put, write'
+                                type: object
+                                additionalProperties: true
+                              nullable: false
+                        nullable: false
+                  nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+    delete:
+      responses:
+        204:
+          description: 'Deletes a single instance of relation_many_to_many'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - relation_many_to_many
+    parameters:
+      -
+        name: id
+        in: path
+        description: 'the id of the resource'
+        required: true
+        schema:
+          type: string
+  /application_info:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of application_info'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: ApplicationInfo
+                  description: 'ApplicationInfo get for groups get, read'
+                  type: object
+                  properties:
+                    app_name:
+                      type: string
+                      nullable: false
+                    environment:
+                      type: string
+                      nullable: false
+                    hash:
+                      type: string
+                      nullable: false
+                    debug:
+                      type: boolean
+                      nullable: false
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: ApplicationInfo
+                  description: 'ApplicationInfo get for groups get, read'
+                  type: object
+                  properties:
+                    app_name:
+                      type: string
+                      nullable: false
+                    environment:
+                      type: string
+                      nullable: false
+                    hash:
+                      type: string
+                      nullable: false
+                    debug:
+                      type: boolean
+                      nullable: false
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - application_info
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+  /status:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of status'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: Status
+                  description: 'Status get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      nullable: false
+                    status:
+                      type: string
+                      nullable: false
+                    optional_reference:
+                      type: string
+                      nullable: true
+                    context:
+                      type: array
+                      items: {  }
+                      nullable: true
+                    no_errors:
+                      description: 'Returns true to tell the status check is ''healthy''.'
+                      type: boolean
+                      nullable: false
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: Status
+                  description: 'Status get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      nullable: false
+                    status:
+                      type: string
+                      nullable: false
+                    optional_reference:
+                      type: string
+                      nullable: true
+                    context:
+                      type: array
+                      items: {  }
+                      nullable: true
+                    no_errors:
+                      description: 'Returns true to tell the status check is ''healthy''.'
+                      type: boolean
+                      nullable: false
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - status
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+        -
+          name: status
+          in: query
+          description: 'search filter status'
+          schema:
+            type: string
+  '/status/{id}':
+    get:
+      responses:
+        200:
+          description: 'Retrieves a single instance of status'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: Status
+                description: 'Status get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: string
+                    nullable: false
+                  status:
+                    type: string
+                    nullable: false
+                  optional_reference:
+                    type: string
+                    nullable: true
+                  context:
+                    type: array
+                    items: {  }
+                    nullable: true
+                  no_errors:
+                    description: 'Returns true to tell the status check is ''healthy''.'
+                    type: boolean
+                    nullable: false
+            application/xml:
+              schema:
+                title: Status
+                description: 'Status get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: string
+                    nullable: false
+                  status:
+                    type: string
+                    nullable: false
+                  optional_reference:
+                    type: string
+                    nullable: true
+                  context:
+                    type: array
+                    items: {  }
+                    nullable: true
+                  no_errors:
+                    description: 'Returns true to tell the status check is ''healthy''.'
+                    type: boolean
+                    nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - status
+    parameters:
+      -
+        name: id
+        in: path
+        description: 'the id of the resource'
+        required: true
+        schema:
+          type: string
+servers:
+  -
+    url: 'https://api-example.nl/api/v1'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        code:
+          oneOf:
+            -
+              type: string
+            -
+              type: integer
+        trace:
+          type: string
+      xml:
+        name: response
+  responses:
+    InvalidFormat:
+      description: 'The body input could not be parsed'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: 'The body input was in a proper format, but the input values were not valid'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+              message:
+                type: string
+              code:
+                oneOf:
+                  -
+                    type: string
+                  -
+                    type: integer
+              trace:
+                type: string
+              errors:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            xml:
+              name: response
+        application/xml:
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+              message:
+                type: string
+              code:
+                oneOf:
+                  -
+                    type: string
+                  -
+                    type: integer
+              trace:
+                type: string
+              errors:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            xml:
+              name: response
+    TooManyRequests:
+      description: 'Too many requests per seconds were sent'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    MaintenanceMode:
+      description: 'App is in maintenance mode'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: 'Response when resource could not be found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotAuthorized:
+      description: 'You have no permission to do this call'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: 'An internal error occured'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerDependencyError:
+      description: 'The server required an external response which threw an error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+  headers:
+    x-ratelimit-limit:
+      description: 'Request limit per hour'
+      schema:
+        type: integer
+      example: 100
+    x-ratelimit-remaining:
+      description: 'Request limit per hour'
+      schema:
+        type: integer
+      example: 94

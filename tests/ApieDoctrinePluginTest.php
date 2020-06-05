@@ -5,15 +5,17 @@ namespace W2w\Test\ApieDoctrinePlugin;
 
 use W2w\Lib\Apie\Exceptions\ResourceNotFoundException;
 use W2w\Test\ApieDoctrinePlugin\Mocks\Example;
-use Zend\Diactoros\Stream;
 
 class ApieDoctrinePluginTest extends AbstractDoctrineTestCase
 {
     public function testPersistNew()
     {
         $apie = $this->createApie(true);
-        $request = $this->createServerRequest('POST', '/example')
-            ->withBody(new Stream('data://text/plain,' . json_encode(['slug' => 'name', 'name' => 'Bean'])));
+        $request = $this->createJsonRequest(
+            'POST',
+            '/example',
+            ['slug' => 'name', 'name' => 'Bean']
+        );
         $result = $apie->getApiResourceFacade()->post(Example::class, $request);
         $data = $result->getNormalizedData();
         $this->assertArrayHasKey('id', $data);
@@ -35,8 +37,11 @@ class ApieDoctrinePluginTest extends AbstractDoctrineTestCase
         $originalCreatedAt = $entity->getCreatedAt();
         $originalUpdatedAt = $entity->getUpdatedAt();
         usleep(100);
-        $request = $this->createServerRequest('PUT', '/example/' . $entity->getId())
-            ->withBody(new Stream('data://text/plain,' . json_encode(['slug' => 'ignored', 'name' => 'Mr. Bean'])));
+        $request = $this->createJsonRequest(
+            'PUT',
+            '/example/' . $entity->getId(),
+            ['slug' => 'ignored', 'name' => 'Mr. Bean']
+        );
         $result = $apie->getApiResourceFacade()->put(Example::class, $entity->getId(), $request);
         $newEntity = $result->getResource();
         $this->assertEquals($originalId, $newEntity->getId());
