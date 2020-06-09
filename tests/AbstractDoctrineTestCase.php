@@ -17,8 +17,14 @@ use W2w\Lib\Apie\Plugins\Core\Normalizers\ContextualNormalizer;
 use W2w\Lib\Apie\Plugins\StaticConfig\StaticConfigPlugin;
 use W2w\Lib\Apie\Plugins\StaticConfig\StaticResourcesPlugin;
 use W2w\Lib\ApieDoctrinePlugin\ApieDoctrinePlugin;
+use W2w\Lib\ApieDoctrinePlugin\ApieNormalizerPlugin;
+use W2w\Lib\ApieDoctrinePlugin\Normalizers\DoctrinePrimaryKeyToEntityNormalizer;
+use W2w\Test\ApieDoctrinePlugin\Mocks\Country;
+use W2w\Test\ApieDoctrinePlugin\Mocks\EntityWithCountry;
+use W2w\Test\ApieDoctrinePlugin\Mocks\EntityWithEmbeddable;
 use W2w\Test\ApieDoctrinePlugin\Mocks\Example;
 use W2w\Test\ApieDoctrinePlugin\Mocks\RelationManyToMany;
+use W2w\Test\ApieDoctrinePlugin\Mocks\RelationOneToMany;
 use W2w\Test\ApieDoctrinePlugin\Mocks\Relations;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Stream;
@@ -48,7 +54,7 @@ abstract class AbstractDoctrineTestCase extends TestCase
         return EntityManager::create($conn, $config);
     }
 
-    protected function createApie(bool $runMigrations = true, array $additionalMigrations = []): Apie
+    protected function createApie(bool $runMigrations = true, array $additionalMigrations = [], array $additionalPlugins = []): Apie
     {
         ContextualNormalizer::disableNormalizer(ApieObjectNormalizer::class);
         ContextualNormalizer::disableDenormalizer(ApieObjectNormalizer::class);
@@ -68,13 +74,19 @@ abstract class AbstractDoctrineTestCase extends TestCase
                 $em->getConnection()->exec(file_get_contents($additionalMigration));
             }
         }
+        $additionalPlugins[] = new StaticResourcesPlugin([EntityWithCountry::class, Example::class, Relations::class, RelationManyToMany::class, EntityWithEmbeddable::class]);
+        $additionalPlugins[] = new StaticConfigPlugin('https://api-example.nl/api/v1');
+        $additionalPlugins[] = new ApieNormalizerPlugin(
+            $em,
+            [
+                Country::class => DoctrinePrimaryKeyToEntityNormalizer::class,
+            ]
+        );
+        $additionalPlugins[] = new ApieDoctrinePlugin($em);
+
         return DefaultApie::createDefaultApie(
             true,
-            [
-                new StaticResourcesPlugin([Example::class, Relations::class, RelationManyToMany::class]),
-                new StaticConfigPlugin('https://api-example.nl/api/v1'),
-                new ApieDoctrinePlugin($em),
-            ]
+            $additionalPlugins
         );
     }
 

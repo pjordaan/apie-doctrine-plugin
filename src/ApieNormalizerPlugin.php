@@ -5,6 +5,7 @@ namespace W2w\Lib\ApieDoctrinePlugin;
 
 use Doctrine\Persistence\ObjectManager;
 use erasys\OpenApi\Spec\v3\Schema;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use W2w\Lib\Apie\PluginInterfaces\NormalizerProviderInterface;
 use W2w\Lib\Apie\PluginInterfaces\SchemaProviderInterface;
@@ -30,7 +31,7 @@ class ApieNormalizerPlugin implements NormalizerProviderInterface, SchemaProvide
     }
 
     /**
-     * @return NormalizerInterface[]|DenormalizerInterface[]
+     * {@inheritDoc}
      */
     public function getNormalizers(): array
     {
@@ -46,7 +47,7 @@ class ApieNormalizerPlugin implements NormalizerProviderInterface, SchemaProvide
     }
 
     /**
-     * @return Schema[]
+     * {@inheritDoc}
      */
     public function getDefinedStaticData(): array
     {
@@ -54,7 +55,7 @@ class ApieNormalizerPlugin implements NormalizerProviderInterface, SchemaProvide
     }
 
     /**
-     * @return callable[]
+     * {@inheritDoc}
      */
     public function getDynamicSchemaLogic(): array
     {

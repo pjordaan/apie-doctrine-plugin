@@ -4,6 +4,8 @@
 namespace W2w\Lib\ApieDoctrinePlugin;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
@@ -19,7 +21,7 @@ use W2w\Lib\ApieDoctrinePlugin\Normalizers\CollectionNormalizer;
 use W2w\Lib\ApieDoctrinePlugin\ObjectAccess\DoctrineEntityObjectAccess;
 use W2w\Lib\ApieDoctrinePlugin\ResourceFactories\DoctrineDataLayerFactory;
 
-class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, NormalizerProviderInterface, PropertyInfoExtractorProviderInterface, ObjectAccessProviderInterface, SchemaProviderInterface
+class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, NormalizerProviderInterface, ObjectAccessProviderInterface, SchemaProviderInterface
 {
     /**
      * @var ObjectManager
@@ -66,63 +68,6 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Normali
     }
 
     /**
-     * @return DoctrineExtractor[]
-     */
-    private function createDoctrineExtractors(): array
-    {
-        $list = [];
-        if ($this->entityManager instanceof EntityManagerInterface) {
-            $list[] = new DoctrineExtractor($this->entityManager);
-        }
-        foreach ($this->additionalEntityManagers as $entityManager) {
-            if ($entityManager instanceof EntityManagerInterface) {
-                $list[] = new DoctrineExtractor($entityManager);
-            }
-        }
-        return $list;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getListExtractors(): array
-    {
-        return $this->createDoctrineExtractors();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTypeExtractors(): array
-    {
-        return $this->createDoctrineExtractors();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDescriptionExtractors(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAccessExtractors(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getInitializableExtractors(): array
-    {
-        return [];
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function getObjectAccesses(): array
@@ -161,7 +106,14 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Normali
      */
     public function getDefinedStaticData(): array
     {
-        return [];
+        $schema = new Schema([
+            'type' => 'array',
+            'items' => new Schema([]),
+        ]);
+        return [
+            ArrayCollection::class => $schema,
+            Collection::class => $schema,
+        ];
     }
 
     /**

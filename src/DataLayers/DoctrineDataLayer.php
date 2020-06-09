@@ -11,6 +11,7 @@ use W2w\Lib\Apie\Exceptions\ResourceNotFoundException;
 use W2w\Lib\Apie\Interfaces\ApiResourcePersisterInterface;
 use W2w\Lib\Apie\Interfaces\ApiResourceRetrieverInterface;
 use W2w\Lib\Apie\Interfaces\SearchFilterProviderInterface;
+use W2w\Lib\ApieDoctrinePlugin\Exceptions\RemoveConflictException;
 
 class DoctrineDataLayer implements ApiResourceRetrieverInterface, ApiResourcePersisterInterface, SearchFilterProviderInterface
 {
@@ -67,7 +68,7 @@ class DoctrineDataLayer implements ApiResourceRetrieverInterface, ApiResourcePer
             $this->entityManager->remove($this->retrieve($resourceClass, $id, $context));
             $this->entityManager->flush();
         } catch (ConstraintViolationException $foreignKeyConstraintViolationException) {
-            throw new ApieException(409, 'Can not remove ' . $id . ' as it is in use by a different resource');
+            throw new RemoveConflictException($id, $foreignKeyConstraintViolationException);
         }
     }
 

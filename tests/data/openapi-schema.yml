@@ -3,6 +3,472 @@ info:
   title: Apie
   version: '3.0'
 paths:
+  /entity_with_country:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of entity_with_country'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: EntityWithCountry
+                  description: 'EntityWithCountry get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    country:
+                      title: Country
+                      description: 'Country get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          nullable: false
+                        name:
+                          type: string
+                          nullable: false
+                    arbitrary_collection:
+                      type: array
+                      items: {  }
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: EntityWithCountry
+                  description: 'EntityWithCountry get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    country:
+                      title: Country
+                      description: 'Country get for groups get, read'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          nullable: false
+                        name:
+                          type: string
+                          nullable: false
+                    arbitrary_collection:
+                      type: array
+                      items: {  }
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_country
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+    post:
+      responses:
+        200:
+          description: 'Creates a new instance of entity_with_country'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: EntityWithCountry
+                description: 'EntityWithCountry get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  country:
+                    title: Country
+                    description: 'Country get for groups get, read'
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        nullable: false
+                      name:
+                        type: string
+                        nullable: false
+                  arbitrary_collection:
+                    type: array
+                    items: {  }
+            application/xml:
+              schema:
+                title: EntityWithCountry
+                description: 'EntityWithCountry get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  country:
+                    title: Country
+                    description: 'Country get for groups get, read'
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        nullable: false
+                      name:
+                        type: string
+                        nullable: false
+                  arbitrary_collection:
+                    type: array
+                    items: {  }
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_country
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: EntityWithCountry
+              description: 'EntityWithCountry post for groups post, write'
+              type: object
+              properties:
+                country:
+                  type: object
+                  oneOf:
+                    -
+                      title: Country
+                      description: 'Country get for groups post, write'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          nullable: false
+                        name:
+                          type: string
+                          nullable: false
+                    -
+                      type: integer
+                    -
+                      type: string
+                arbitrary_collection:
+                  type: array
+                  items: {  }
+          application/xml:
+            schema:
+              title: EntityWithCountry
+              description: 'EntityWithCountry post for groups post, write'
+              type: object
+              properties:
+                country:
+                  type: object
+                  oneOf:
+                    -
+                      title: Country
+                      description: 'Country get for groups post, write'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          nullable: false
+                        name:
+                          type: string
+                          nullable: false
+                    -
+                      type: integer
+                    -
+                      type: string
+                arbitrary_collection:
+                  type: array
+                  items: {  }
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+  '/entity_with_country/{id}':
+    get:
+      responses:
+        200:
+          description: 'Retrieves a single instance of entity_with_country'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: EntityWithCountry
+                description: 'EntityWithCountry get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  country:
+                    title: Country
+                    description: 'Country get for groups get, read'
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        nullable: false
+                      name:
+                        type: string
+                        nullable: false
+                  arbitrary_collection:
+                    type: array
+                    items: {  }
+            application/xml:
+              schema:
+                title: EntityWithCountry
+                description: 'EntityWithCountry get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  country:
+                    title: Country
+                    description: 'Country get for groups get, read'
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        nullable: false
+                      name:
+                        type: string
+                        nullable: false
+                  arbitrary_collection:
+                    type: array
+                    items: {  }
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_country
+    put:
+      responses:
+        200:
+          description: 'Retrieves and update a single instance of entity_with_country'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: EntityWithCountry
+                description: 'EntityWithCountry get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  country:
+                    title: Country
+                    description: 'Country get for groups get, read'
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        nullable: false
+                      name:
+                        type: string
+                        nullable: false
+                  arbitrary_collection:
+                    type: array
+                    items: {  }
+            application/xml:
+              schema:
+                title: EntityWithCountry
+                description: 'EntityWithCountry get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  country:
+                    title: Country
+                    description: 'Country get for groups get, read'
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        nullable: false
+                      name:
+                        type: string
+                        nullable: false
+                  arbitrary_collection:
+                    type: array
+                    items: {  }
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_country
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: EntityWithCountry
+              description: 'EntityWithCountry put for groups put, write'
+              type: object
+              properties:
+                country:
+                  type: object
+                  oneOf:
+                    -
+                      title: Country
+                      description: 'Country get for groups post, write'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          nullable: false
+                        name:
+                          type: string
+                          nullable: false
+                    -
+                      type: integer
+                    -
+                      type: string
+                arbitrary_collection:
+                  type: array
+                  items: {  }
+          application/xml:
+            schema:
+              title: EntityWithCountry
+              description: 'EntityWithCountry put for groups put, write'
+              type: object
+              properties:
+                country:
+                  type: object
+                  oneOf:
+                    -
+                      title: Country
+                      description: 'Country get for groups post, write'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          nullable: false
+                        name:
+                          type: string
+                          nullable: false
+                    -
+                      type: integer
+                    -
+                      type: string
+                arbitrary_collection:
+                  type: array
+                  items: {  }
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+    delete:
+      responses:
+        204:
+          description: 'Deletes a single instance of entity_with_country'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_country
+    parameters:
+      -
+        name: id
+        in: path
+        description: 'the id of the resource'
+        required: true
+        schema:
+          type: string
   /example:
     get:
       responses:
@@ -2893,6 +3359,480 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
+    parameters:
+      -
+        name: id
+        in: path
+        description: 'the id of the resource'
+        required: true
+        schema:
+          type: string
+  /entity_with_embeddable:
+    get:
+      responses:
+        200:
+          description: 'Retrieves all instances of entity_with_embeddable'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: EntityWithEmbeddable
+                  description: 'EntityWithEmbeddable get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    address:
+                      title: Address
+                      description: 'Address get for groups get, read'
+                      type: object
+                      properties:
+                        street:
+                          type: string
+                          nullable: false
+                        street_number:
+                          type: string
+                          nullable: false
+                        postal_code:
+                          type: string
+                          nullable: false
+                        city:
+                          type: string
+                          nullable: false
+            application/xml:
+              schema:
+                type: array
+                items:
+                  title: EntityWithEmbeddable
+                  description: 'EntityWithEmbeddable get for groups get, read'
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      nullable: false
+                    address:
+                      title: Address
+                      description: 'Address get for groups get, read'
+                      type: object
+                      properties:
+                        street:
+                          type: string
+                          nullable: false
+                        street_number:
+                          type: string
+                          nullable: false
+                        postal_code:
+                          type: string
+                          nullable: false
+                        city:
+                          type: string
+                          nullable: false
+                  xml:
+                    name: item
+                xml:
+                  name: response
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_embeddable
+      parameters:
+        -
+          name: page
+          in: query
+          description: 'pagination index counting from 0'
+          schema:
+            type: integer
+            minimum: 0
+        -
+          name: limit
+          in: query
+          description: 'number of results'
+          schema:
+            type: integer
+            minimum: 1
+    post:
+      responses:
+        200:
+          description: 'Creates a new instance of entity_with_embeddable'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: EntityWithEmbeddable
+                description: 'EntityWithEmbeddable get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  address:
+                    title: Address
+                    description: 'Address get for groups get, read'
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        nullable: false
+                      street_number:
+                        type: string
+                        nullable: false
+                      postal_code:
+                        type: string
+                        nullable: false
+                      city:
+                        type: string
+                        nullable: false
+            application/xml:
+              schema:
+                title: EntityWithEmbeddable
+                description: 'EntityWithEmbeddable get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  address:
+                    title: Address
+                    description: 'Address get for groups get, read'
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        nullable: false
+                      street_number:
+                        type: string
+                        nullable: false
+                      postal_code:
+                        type: string
+                        nullable: false
+                      city:
+                        type: string
+                        nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_embeddable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: EntityWithEmbeddable
+              description: 'EntityWithEmbeddable post for groups post, write'
+              type: object
+              properties:
+                address:
+                  title: Address
+                  description: 'Address post for groups post, write'
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      nullable: false
+                    street_number:
+                      type: string
+                      nullable: false
+                    postal_code:
+                      type: string
+                      nullable: false
+                    city:
+                      type: string
+                      nullable: false
+          application/xml:
+            schema:
+              title: EntityWithEmbeddable
+              description: 'EntityWithEmbeddable post for groups post, write'
+              type: object
+              properties:
+                address:
+                  title: Address
+                  description: 'Address post for groups post, write'
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      nullable: false
+                    street_number:
+                      type: string
+                      nullable: false
+                    postal_code:
+                      type: string
+                      nullable: false
+                    city:
+                      type: string
+                      nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+  '/entity_with_embeddable/{id}':
+    get:
+      responses:
+        200:
+          description: 'Retrieves a single instance of entity_with_embeddable'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: EntityWithEmbeddable
+                description: 'EntityWithEmbeddable get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  address:
+                    title: Address
+                    description: 'Address get for groups get, read'
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        nullable: false
+                      street_number:
+                        type: string
+                        nullable: false
+                      postal_code:
+                        type: string
+                        nullable: false
+                      city:
+                        type: string
+                        nullable: false
+            application/xml:
+              schema:
+                title: EntityWithEmbeddable
+                description: 'EntityWithEmbeddable get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  address:
+                    title: Address
+                    description: 'Address get for groups get, read'
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        nullable: false
+                      street_number:
+                        type: string
+                        nullable: false
+                      postal_code:
+                        type: string
+                        nullable: false
+                      city:
+                        type: string
+                        nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_embeddable
+    put:
+      responses:
+        200:
+          description: 'Retrieves and update a single instance of entity_with_embeddable'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+          content:
+            application/json:
+              schema:
+                title: EntityWithEmbeddable
+                description: 'EntityWithEmbeddable get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  address:
+                    title: Address
+                    description: 'Address get for groups get, read'
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        nullable: false
+                      street_number:
+                        type: string
+                        nullable: false
+                      postal_code:
+                        type: string
+                        nullable: false
+                      city:
+                        type: string
+                        nullable: false
+            application/xml:
+              schema:
+                title: EntityWithEmbeddable
+                description: 'EntityWithEmbeddable get for groups get, read'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    nullable: false
+                  address:
+                    title: Address
+                    description: 'Address get for groups get, read'
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        nullable: false
+                      street_number:
+                        type: string
+                        nullable: false
+                      postal_code:
+                        type: string
+                        nullable: false
+                      city:
+                        type: string
+                        nullable: false
+                xml:
+                  name: item
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        415:
+          $ref: '#/components/responses/InvalidFormat'
+        422:
+          $ref: '#/components/responses/ValidationError'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_embeddable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: EntityWithEmbeddable
+              description: 'EntityWithEmbeddable put for groups put, write'
+              type: object
+              properties:
+                address:
+                  title: Address
+                  description: 'Address post for groups put, write'
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      nullable: false
+                    street_number:
+                      type: string
+                      nullable: false
+                    postal_code:
+                      type: string
+                      nullable: false
+                    city:
+                      type: string
+                      nullable: false
+          application/xml:
+            schema:
+              title: EntityWithEmbeddable
+              description: 'EntityWithEmbeddable put for groups put, write'
+              type: object
+              properties:
+                address:
+                  title: Address
+                  description: 'Address post for groups put, write'
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      nullable: false
+                    street_number:
+                      type: string
+                      nullable: false
+                    postal_code:
+                      type: string
+                      nullable: false
+                    city:
+                      type: string
+                      nullable: false
+              xml:
+                name: item
+        description: 'the resource as JSON to persist'
+        required: true
+    delete:
+      responses:
+        204:
+          description: 'Deletes a single instance of entity_with_embeddable'
+          headers:
+            x-ratelimit-limit:
+              $ref: '#/components/headers/x-ratelimit-limit'
+            x-ratelimit-remaining:
+              $ref: '#/components/headers/x-ratelimit-remaining'
+        401:
+          $ref: '#/components/responses/NotAuthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalError'
+        502:
+          $ref: '#/components/responses/ServerDependencyError'
+        503:
+          $ref: '#/components/responses/MaintenanceMode'
+      tags:
+        - entity_with_embeddable
     parameters:
       -
         name: id
