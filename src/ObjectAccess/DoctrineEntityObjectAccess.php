@@ -2,7 +2,6 @@
 
 namespace W2w\Lib\ApieDoctrinePlugin\ObjectAccess;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Pjordaan\AlternateReflectionExtractor\ReflectionExtractor;
@@ -11,6 +10,9 @@ use Symfony\Bridge\Doctrine\PropertyInfo\DoctrineExtractor;
 use W2w\Lib\ApieObjectAccessNormalizer\ObjectAccess\ObjectAccess;
 use W2w\Lib\ApieObjectAccessNormalizer\ObjectAccess\ObjectAccessSupportedInterface;
 
+/**
+ * ObjectAccess class override for Doctrine entities to get the proper types for related associations.
+ */
 class DoctrineEntityObjectAccess extends ObjectAccess implements ObjectAccessSupportedInterface
 {
     /**

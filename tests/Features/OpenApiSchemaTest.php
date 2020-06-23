@@ -15,7 +15,7 @@ class OpenApiSchemaTest extends AbstractDoctrineTestCase
         $apie = $this->createApie(true, []);
         $generator = $apie->getOpenApiSpecGenerator();
         $schema = $generator->getOpenApiSpec()->toYaml(20, 2);
-         file_put_contents(self::SCHEMA, $schema);
+        // file_put_contents(self::SCHEMA, $schema);
         $expected = file_get_contents(self::SCHEMA);
         $this->assertEquals($expected, $schema);
     }

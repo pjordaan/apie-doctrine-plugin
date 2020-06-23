@@ -3,8 +3,6 @@
 
 namespace W2w\Lib\ApieDoctrinePlugin\ResourceFactories;
 
-
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use RuntimeException;
 use W2w\Lib\Apie\Interfaces\ApiResourceFactoryInterface;
@@ -12,6 +10,9 @@ use W2w\Lib\Apie\Interfaces\ApiResourcePersisterInterface;
 use W2w\Lib\Apie\Interfaces\ApiResourceRetrieverInterface;
 use W2w\Lib\ApieDoctrinePlugin\DataLayers\DoctrineDataLayer;
 
+/**
+ * Factory to create a DoctrineDataLayer for an entity manager.
+ */
 class DoctrineDataLayerFactory implements ApiResourceFactoryInterface
 {
     /**

@@ -10,7 +10,7 @@ use W2w\Lib\ApieDoctrinePlugin\Exceptions\EntityNotAllowedException;
 /**
  * Normalizes a primitive to an entity. If active a REST API could do:
  *
- * For example an entitiy that references a country entitiy can do this request
+ * For example an entity that references a country entity can do this request
  *
  * {
  *     "country": 2
@@ -18,7 +18,7 @@ use W2w\Lib\ApieDoctrinePlugin\Exceptions\EntityNotAllowedException;
  *
  * To link to a country with id 2. Because of security reasons any DoctrineEntityNormalizer instance can only
  * denormalize one specific entity. You only want to apply this to entities with public data with data that
- * is almost never changed.
+ * is almost never changed, for example country data.
  */
 class DoctrinePrimaryKeyToEntityNormalizer implements DenormalizerInterface
 {
@@ -38,11 +38,22 @@ class DoctrinePrimaryKeyToEntityNormalizer implements DenormalizerInterface
         $this->objectManager = $objectManager;
     }
 
+    /**
+     * Override this class method if you want to do a permission check on the entity. The normal
+     * implementation is to allow all users.
+     *
+     * @param object $entity
+     * @param array $context
+     * @return bool
+     */
     protected function isEntityAllowed(object $entity, array $context): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function denormalize($data, $type, $format = null, array $context = [])
     {
         $result = $this->objectManager->getRepository($type)->find($data);
@@ -55,6 +66,9 @@ class DoctrinePrimaryKeyToEntityNormalizer implements DenormalizerInterface
         return $result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function supportsDenormalization($data, $type, $format = null)
     {
         return $type === $this->entityClass

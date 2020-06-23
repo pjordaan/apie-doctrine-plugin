@@ -1,12 +1,9 @@
 <?php
 
-
 namespace W2w\Lib\ApieDoctrinePlugin;
 
 use Doctrine\Persistence\ObjectManager;
-use erasys\OpenApi\Spec\v3\Schema;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use W2w\Lib\Apie\PluginInterfaces\NormalizerProviderInterface;
 use W2w\Lib\Apie\PluginInterfaces\SchemaProviderInterface;
 use W2w\Lib\ApieDoctrinePlugin\Normalizers\DoctrinePrimaryKeyToEntityNormalizer;

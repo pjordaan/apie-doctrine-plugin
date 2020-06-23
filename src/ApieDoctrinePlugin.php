@@ -6,21 +6,31 @@ namespace W2w\Lib\ApieDoctrinePlugin;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use erasys\OpenApi\Spec\v3\Schema;
-use Symfony\Bridge\Doctrine\PropertyInfo\DoctrineExtractor;
 use W2w\Lib\Apie\Interfaces\ApiResourceFactoryInterface;
 use W2w\Lib\Apie\PluginInterfaces\ApiResourceFactoryProviderInterface;
 use W2w\Lib\Apie\PluginInterfaces\NormalizerProviderInterface;
 use W2w\Lib\Apie\PluginInterfaces\ObjectAccessProviderInterface;
-use W2w\Lib\Apie\PluginInterfaces\PropertyInfoExtractorProviderInterface;
 use W2w\Lib\Apie\PluginInterfaces\SchemaProviderInterface;
 use W2w\Lib\ApieDoctrinePlugin\Normalizers\CollectionNormalizer;
 use W2w\Lib\ApieDoctrinePlugin\ObjectAccess\DoctrineEntityObjectAccess;
 use W2w\Lib\ApieDoctrinePlugin\ResourceFactories\DoctrineDataLayerFactory;
 
+/**
+ * Connects Apie with Doctrine.
+ *
+ * Usage (from an entity manager):
+ * ```php
+ * $doctrinePlugin = new DoctrinePlugin($entityManager);
+ * ```
+ *
+ * Usage (from a doctrine registry class):
+ * ```php
+ * $doctrinePlugin = ApieDoctrinePlugin::createFromRegistry($registry);
+ * ```
+ */
 class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, NormalizerProviderInterface, ObjectAccessProviderInterface, SchemaProviderInterface
 {
     /**
@@ -62,6 +72,9 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Normali
         return new self($defaultManager, $otherManagers);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getApiResourceFactory(): ApiResourceFactoryInterface
     {
         return new DoctrineDataLayerFactory($this->entityManager, $this->additionalEntityManagers);
@@ -80,6 +93,12 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Normali
         return $list;
     }
 
+    /**
+     * Construct Array for getObjectAccesses for all entities managed by an Entity manager.
+     *
+     * @param array $array
+     * @param ObjectManager $objectManager
+     */
     private function mergeObjectAccess(array &$array, ObjectManager $objectManager)
     {
         $metas = $objectManager->getMetadataFactory()->getAllMetadata();
@@ -102,7 +121,7 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Normali
     }
 
     /**
-     * @return Schema[]
+     * {@inheritDoc}
      */
     public function getDefinedStaticData(): array
     {
@@ -117,7 +136,7 @@ class ApieDoctrinePlugin implements ApiResourceFactoryProviderInterface, Normali
     }
 
     /**
-     * @return callable[]
+     * {@inheritDoc}
      */
     public function getDynamicSchemaLogic(): array
     {

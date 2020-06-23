@@ -1,12 +1,21 @@
 {
     "name": "pjordaan/apie-doctrine-plugin",
     "description": "Use doctrine with Apie",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "W2w\\Test\\ApieDoctrinePlugin\\Providers\\ApieDoctrinePluginServiceProvider"
+            ]
+        }
+    },
     "require": {
         "php": "^7.2",
-        "doctrine/orm": "^2.7",
+        "doctrine/orm": "^2.7|^3.0",
+        "illuminate/support": "^5.6|^6.0|^7.0",
+        "pjordaan/alternate-reflection-extractor": "^4.3|^5.0",
         "symfony/doctrine-bridge": "^4.0|^5.0",
         "symfony/polyfill-php73": "1.*",
-        "w2w/apie": "3.3.x-dev"
+        "w2w/apie": ">=3.3.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

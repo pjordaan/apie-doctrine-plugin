@@ -18,6 +18,9 @@ class CollectionNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     use SerializerAwareTrait;
 
+    /**
+     * @var ObjectManager
+     */
     private $objectManager;
 
     public function __construct(ObjectManager $objectManager)

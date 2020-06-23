@@ -80,6 +80,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
+      summary: 'get/search all instances of entity_with_country'
+      operationId: resourceGetAllEntityWithCountry
       parameters:
         -
           name: page
@@ -169,6 +171,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
+      summary: 'create a new single instance of entity_with_country'
+      operationId: resourcePostSingleEntityWithCountry
       requestBody:
         content:
           application/json:
@@ -181,6 +185,10 @@ paths:
                   type: object
                   oneOf:
                     -
+                      type: integer
+                    -
+                      type: string
+                    -
                       title: Country
                       description: 'Country get for groups post, write'
                       type: object
@@ -191,10 +199,6 @@ paths:
                         name:
                           type: string
                           nullable: false
-                    -
-                      type: integer
-                    -
-                      type: string
                 arbitrary_collection:
                   type: array
                   items: {  }
@@ -208,6 +212,10 @@ paths:
                   type: object
                   oneOf:
                     -
+                      type: integer
+                    -
+                      type: string
+                    -
                       title: Country
                       description: 'Country get for groups post, write'
                       type: object
@@ -218,10 +226,6 @@ paths:
                         name:
                           type: string
                           nullable: false
-                    -
-                      type: integer
-                    -
-                      type: string
                 arbitrary_collection:
                   type: array
                   items: {  }
@@ -302,6 +306,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
+      summary: 'retrieve a single instance of entity_with_country'
+      operationId: resourceGetSingleEntityWithCountry
     put:
       responses:
         200:
@@ -378,6 +384,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
+      summary: 'modify a single instance of entity_with_country'
+      operationId: resourcePutSingleEntityWithCountry
       requestBody:
         content:
           application/json:
@@ -390,6 +398,10 @@ paths:
                   type: object
                   oneOf:
                     -
+                      type: integer
+                    -
+                      type: string
+                    -
                       title: Country
                       description: 'Country get for groups post, write'
                       type: object
@@ -400,10 +412,6 @@ paths:
                         name:
                           type: string
                           nullable: false
-                    -
-                      type: integer
-                    -
-                      type: string
                 arbitrary_collection:
                   type: array
                   items: {  }
@@ -417,6 +425,10 @@ paths:
                   type: object
                   oneOf:
                     -
+                      type: integer
+                    -
+                      type: string
+                    -
                       title: Country
                       description: 'Country get for groups post, write'
                       type: object
@@ -427,10 +439,6 @@ paths:
                         name:
                           type: string
                           nullable: false
-                    -
-                      type: integer
-                    -
-                      type: string
                 arbitrary_collection:
                   type: array
                   items: {  }
@@ -461,6 +469,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
+      summary: 'delete a single instance of entity_with_country'
+      operationId: resourceDeleteSingleEntityWithCountry
     parameters:
       -
         name: id
@@ -542,6 +552,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
+      summary: 'get/search all instances of example'
+      operationId: resourceGetAllExample
       parameters:
         -
           name: page
@@ -627,6 +639,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
+      summary: 'create a new single instance of example'
+      operationId: resourcePostSingleExample
       requestBody:
         content:
           application/json:
@@ -726,6 +740,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
+      summary: 'retrieve a single instance of example'
+      operationId: resourceGetSingleExample
     put:
       responses:
         200:
@@ -798,6 +814,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
+      summary: 'modify a single instance of example'
+      operationId: resourcePutSingleExample
       requestBody:
         content:
           application/json:
@@ -845,6 +863,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
+      summary: 'delete a single instance of example'
+      operationId: resourceDeleteSingleExample
     parameters:
       -
         name: id
@@ -976,6 +996,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
+      summary: 'get/search all instances of relations'
+      operationId: resourceGetAllRelations
       parameters:
         -
           name: page
@@ -1111,6 +1133,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
+      summary: 'create a new single instance of relations'
+      operationId: resourcePostSingleRelations
       requestBody:
         content:
           application/json:
@@ -1830,6 +1854,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
+      summary: 'retrieve a single instance of relations'
+      operationId: resourceGetSingleRelations
     put:
       responses:
         200:
@@ -1952,6 +1978,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
+      summary: 'modify a single instance of relations'
+      operationId: resourcePutSingleRelations
       requestBody:
         content:
           application/json:
@@ -2575,6 +2603,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
+      summary: 'delete a single instance of relations'
+      operationId: resourceDeleteSingleRelations
     parameters:
       -
         name: id
@@ -2654,6 +2684,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
+      summary: 'get/search all instances of relation_many_to_many'
+      operationId: resourceGetAllRelationManyToMany
       parameters:
         -
           name: page
@@ -2737,6 +2769,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
+      summary: 'create a new single instance of relation_many_to_many'
+      operationId: resourcePostSingleRelationManyToMany
       requestBody:
         content:
           application/json:
@@ -3038,6 +3072,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
+      summary: 'retrieve a single instance of relation_many_to_many'
+      operationId: resourceGetSingleRelationManyToMany
     put:
       responses:
         200:
@@ -3108,6 +3144,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
+      summary: 'modify a single instance of relation_many_to_many'
+      operationId: resourcePutSingleRelationManyToMany
       requestBody:
         content:
           application/json:
@@ -3359,6 +3397,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
+      summary: 'delete a single instance of relation_many_to_many'
+      operationId: resourceDeleteSingleRelationManyToMany
     parameters:
       -
         name: id
@@ -3450,6 +3490,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
+      summary: 'get/search all instances of entity_with_embeddable'
+      operationId: resourceGetAllEntityWithEmbeddable
       parameters:
         -
           name: page
@@ -3545,6 +3587,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
+      summary: 'create a new single instance of entity_with_embeddable'
+      operationId: resourcePostSingleEntityWithEmbeddable
       requestBody:
         content:
           application/json:
@@ -3676,6 +3720,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
+      summary: 'retrieve a single instance of entity_with_embeddable'
+      operationId: resourceGetSingleEntityWithEmbeddable
     put:
       responses:
         200:
@@ -3758,6 +3804,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
+      summary: 'modify a single instance of entity_with_embeddable'
+      operationId: resourcePutSingleEntityWithEmbeddable
       requestBody:
         content:
           application/json:
@@ -3833,6 +3881,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
+      summary: 'delete a single instance of entity_with_embeddable'
+      operationId: resourceDeleteSingleEntityWithEmbeddable
     parameters:
       -
         name: id
@@ -3908,6 +3958,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - application_info
+      summary: 'get/search all instances of application_info'
+      operationId: resourceGetAllApplicationInfo
       parameters:
         -
           name: page
@@ -4000,6 +4052,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - status
+      summary: 'get/search all instances of status'
+      operationId: resourceGetAllStatus
       parameters:
         -
           name: page
@@ -4094,6 +4148,8 @@ paths:
           $ref: '#/components/responses/MaintenanceMode'
       tags:
         - status
+      summary: 'retrieve a single instance of status'
+      operationId: resourceGetSingleStatus
     parameters:
       -
         name: id

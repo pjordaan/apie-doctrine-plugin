@@ -17,6 +17,9 @@ class DoctrineDataLayer implements ApiResourceRetrieverInterface, ApiResourcePer
 {
     use SearchFilterFromMetadataTrait;
 
+    /**
+     * @var ObjectManager
+     */
     private $entityManager;
 
     public function __construct(ObjectManager $entityManager)
