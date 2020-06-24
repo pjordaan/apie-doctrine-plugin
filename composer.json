@@ -4,7 +4,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "W2w\\Test\\ApieDoctrinePlugin\\Providers\\ApieDoctrinePluginServiceProvider"
+                "W2w\\Lib\\ApieDoctrinePlugin\\Providers\\ApieDoctrinePluginServiceProvider"
             ]
         }
     },
