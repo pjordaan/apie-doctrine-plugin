@@ -1,5 +1,8 @@
 {
     "name": "pjordaan/apie-doctrine-plugin",
+    "conflict": {
+        "w2w/laravel-apie": "<3.2.2"
+    },
     "description": "Use doctrine with Apie",
     "extra": {
         "laravel": {
