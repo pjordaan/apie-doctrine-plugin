@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Apie
-  version: '3.0'
+  version: '4.0'
 paths:
   /entity_with_country:
     get:
@@ -9,10 +9,16 @@ paths:
         200:
           description: 'Retrieves all instances of entity_with_country'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -68,16 +74,6 @@ paths:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
       summary: 'get/search all instances of entity_with_country'
@@ -101,11 +97,7 @@ paths:
       responses:
         200:
           description: 'Creates a new instance of entity_with_country'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -155,20 +147,10 @@ paths:
                     items: {  }
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
       summary: 'create a new single instance of entity_with_country'
@@ -238,11 +220,7 @@ paths:
       responses:
         200:
           description: 'Retrieves a single instance of entity_with_country'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -292,18 +270,8 @@ paths:
                     items: {  }
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
       summary: 'retrieve a single instance of entity_with_country'
@@ -312,11 +280,7 @@ paths:
       responses:
         200:
           description: 'Retrieves and update a single instance of entity_with_country'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -366,22 +330,12 @@ paths:
                     items: {  }
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
       summary: 'modify a single instance of entity_with_country'
@@ -450,23 +404,9 @@ paths:
       responses:
         204:
           description: 'Deletes a single instance of entity_with_country'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
-        401:
-          $ref: '#/components/responses/NotAuthorized'
+          headers: {  }
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_country
       summary: 'delete a single instance of entity_with_country'
@@ -485,10 +425,16 @@ paths:
         200:
           description: 'Retrieves all instances of example'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -540,16 +486,6 @@ paths:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
       summary: 'get/search all instances of example'
@@ -573,11 +509,7 @@ paths:
       responses:
         200:
           description: 'Creates a new instance of example'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -623,20 +555,10 @@ paths:
                     format: date-time
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
       summary: 'create a new single instance of example'
@@ -676,11 +598,7 @@ paths:
       responses:
         200:
           description: 'Retrieves a single instance of example'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -726,18 +644,8 @@ paths:
                     format: date-time
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
       summary: 'retrieve a single instance of example'
@@ -746,11 +654,7 @@ paths:
       responses:
         200:
           description: 'Retrieves and update a single instance of example'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -796,22 +700,12 @@ paths:
                     format: date-time
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
       summary: 'modify a single instance of example'
@@ -844,23 +738,9 @@ paths:
       responses:
         204:
           description: 'Deletes a single instance of example'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
-        401:
-          $ref: '#/components/responses/NotAuthorized'
+          headers: {  }
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - example
       summary: 'delete a single instance of example'
@@ -879,10 +759,16 @@ paths:
         200:
           description: 'Retrieves all instances of relations'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -898,13 +784,15 @@ paths:
                     one_to_one:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     one_to_one_inverse:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     one_to_many:
                       type: array
                       items:
@@ -918,8 +806,9 @@ paths:
                           many_to_one:
                             type: string
                             format: path
+                            default: 'https://api-example.nl/api/v1/relations/12345'
                             nullable: true
-                            example: /relations/12345
+                            example: 'https://api-example.nl/api/v1/relations/12345'
                           name:
                             type: string
                             nullable: false
@@ -929,8 +818,9 @@ paths:
                       items:
                         type: string
                         format: path
+                        default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                         nullable: true
-                        example: /relation_many_to_many/12345
+                        example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: false
             application/xml:
               schema:
@@ -946,13 +836,15 @@ paths:
                     one_to_one:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     one_to_one_inverse:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     one_to_many:
                       type: array
                       items:
@@ -966,8 +858,9 @@ paths:
                           many_to_one:
                             type: string
                             format: path
+                            default: 'https://api-example.nl/api/v1/relations/12345'
                             nullable: true
-                            example: /relations/12345
+                            example: 'https://api-example.nl/api/v1/relations/12345'
                           name:
                             type: string
                             nullable: false
@@ -977,23 +870,14 @@ paths:
                       items:
                         type: string
                         format: path
+                        default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                         nullable: true
-                        example: /relation_many_to_many/12345
+                        example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: false
                   xml:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
       summary: 'get/search all instances of relations'
@@ -1017,11 +901,7 @@ paths:
       responses:
         200:
           description: 'Creates a new instance of relations'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -1035,13 +915,15 @@ paths:
                   one_to_one:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_one_inverse:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_many:
                     type: array
                     items:
@@ -1055,8 +937,9 @@ paths:
                         many_to_one:
                           type: string
                           format: path
+                          default: 'https://api-example.nl/api/v1/relations/12345'
                           nullable: true
-                          example: /relations/12345
+                          example: 'https://api-example.nl/api/v1/relations/12345'
                         name:
                           type: string
                           nullable: false
@@ -1066,8 +949,9 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: true
-                      example: /relation_many_to_many/12345
+                      example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                     nullable: false
             application/xml:
               schema:
@@ -1081,13 +965,15 @@ paths:
                   one_to_one:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_one_inverse:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_many:
                     type: array
                     items:
@@ -1101,8 +987,9 @@ paths:
                         many_to_one:
                           type: string
                           format: path
+                          default: 'https://api-example.nl/api/v1/relations/12345'
                           nullable: true
-                          example: /relations/12345
+                          example: 'https://api-example.nl/api/v1/relations/12345'
                         name:
                           type: string
                           nullable: false
@@ -1112,25 +999,16 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: true
-                      example: /relation_many_to_many/12345
+                      example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
       summary: 'create a new single instance of relations'
@@ -1740,11 +1618,7 @@ paths:
       responses:
         200:
           description: 'Retrieves a single instance of relations'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -1758,13 +1632,15 @@ paths:
                   one_to_one:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_one_inverse:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_many:
                     type: array
                     items:
@@ -1778,8 +1654,9 @@ paths:
                         many_to_one:
                           type: string
                           format: path
+                          default: 'https://api-example.nl/api/v1/relations/12345'
                           nullable: true
-                          example: /relations/12345
+                          example: 'https://api-example.nl/api/v1/relations/12345'
                         name:
                           type: string
                           nullable: false
@@ -1789,8 +1666,9 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: true
-                      example: /relation_many_to_many/12345
+                      example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                     nullable: false
             application/xml:
               schema:
@@ -1804,13 +1682,15 @@ paths:
                   one_to_one:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_one_inverse:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_many:
                     type: array
                     items:
@@ -1824,8 +1704,9 @@ paths:
                         many_to_one:
                           type: string
                           format: path
+                          default: 'https://api-example.nl/api/v1/relations/12345'
                           nullable: true
-                          example: /relations/12345
+                          example: 'https://api-example.nl/api/v1/relations/12345'
                         name:
                           type: string
                           nullable: false
@@ -1835,23 +1716,14 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: true
-                      example: /relation_many_to_many/12345
+                      example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
       summary: 'retrieve a single instance of relations'
@@ -1860,11 +1732,7 @@ paths:
       responses:
         200:
           description: 'Retrieves and update a single instance of relations'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -1878,13 +1746,15 @@ paths:
                   one_to_one:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_one_inverse:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_many:
                     type: array
                     items:
@@ -1898,8 +1768,9 @@ paths:
                         many_to_one:
                           type: string
                           format: path
+                          default: 'https://api-example.nl/api/v1/relations/12345'
                           nullable: true
-                          example: /relations/12345
+                          example: 'https://api-example.nl/api/v1/relations/12345'
                         name:
                           type: string
                           nullable: false
@@ -1909,8 +1780,9 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: true
-                      example: /relation_many_to_many/12345
+                      example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                     nullable: false
             application/xml:
               schema:
@@ -1924,13 +1796,15 @@ paths:
                   one_to_one:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_one_inverse:
                     type: string
                     format: path
+                    default: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: true
-                    example: /relations/12345
+                    example: 'https://api-example.nl/api/v1/relations/12345'
                   one_to_many:
                     type: array
                     items:
@@ -1944,8 +1818,9 @@ paths:
                         many_to_one:
                           type: string
                           format: path
+                          default: 'https://api-example.nl/api/v1/relations/12345'
                           nullable: true
-                          example: /relations/12345
+                          example: 'https://api-example.nl/api/v1/relations/12345'
                         name:
                           type: string
                           nullable: false
@@ -1955,27 +1830,18 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                       nullable: true
-                      example: /relation_many_to_many/12345
+                      example: 'https://api-example.nl/api/v1/relation_many_to_many/12345'
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
       summary: 'modify a single instance of relations'
@@ -2584,23 +2450,9 @@ paths:
       responses:
         204:
           description: 'Deletes a single instance of relations'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
-        401:
-          $ref: '#/components/responses/NotAuthorized'
+          headers: {  }
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relations
       summary: 'delete a single instance of relations'
@@ -2619,10 +2471,16 @@ paths:
         200:
           description: 'Retrieves all instances of relation_many_to_many'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -2640,8 +2498,9 @@ paths:
                       items:
                         type: string
                         format: path
+                        default: 'https://api-example.nl/api/v1/relations/12345'
                         nullable: true
-                        example: /relations/12345
+                        example: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: false
                     name:
                       type: string
@@ -2662,8 +2521,9 @@ paths:
                       items:
                         type: string
                         format: path
+                        default: 'https://api-example.nl/api/v1/relations/12345'
                         nullable: true
-                        example: /relations/12345
+                        example: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: false
                     name:
                       type: string
@@ -2672,16 +2532,6 @@ paths:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
       summary: 'get/search all instances of relation_many_to_many'
@@ -2705,11 +2555,7 @@ paths:
       responses:
         200:
           description: 'Creates a new instance of relation_many_to_many'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -2725,8 +2571,9 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: false
                   name:
                     type: string
@@ -2745,28 +2592,19 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: false
                   name:
                     type: string
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
       summary: 'create a new single instance of relation_many_to_many'
@@ -3010,11 +2848,7 @@ paths:
       responses:
         200:
           description: 'Retrieves a single instance of relation_many_to_many'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -3030,8 +2864,9 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: false
                   name:
                     type: string
@@ -3050,26 +2885,17 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: false
                   name:
                     type: string
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
       summary: 'retrieve a single instance of relation_many_to_many'
@@ -3078,11 +2904,7 @@ paths:
       responses:
         200:
           description: 'Retrieves and update a single instance of relation_many_to_many'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -3098,8 +2920,9 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: false
                   name:
                     type: string
@@ -3118,30 +2941,21 @@ paths:
                     items:
                       type: string
                       format: path
+                      default: 'https://api-example.nl/api/v1/relations/12345'
                       nullable: true
-                      example: /relations/12345
+                      example: 'https://api-example.nl/api/v1/relations/12345'
                     nullable: false
                   name:
                     type: string
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
       summary: 'modify a single instance of relation_many_to_many'
@@ -3378,23 +3192,9 @@ paths:
       responses:
         204:
           description: 'Deletes a single instance of relation_many_to_many'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
-        401:
-          $ref: '#/components/responses/NotAuthorized'
+          headers: {  }
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - relation_many_to_many
       summary: 'delete a single instance of relation_many_to_many'
@@ -3413,10 +3213,16 @@ paths:
         200:
           description: 'Retrieves all instances of entity_with_embeddable'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -3478,16 +3284,6 @@ paths:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
       summary: 'get/search all instances of entity_with_embeddable'
@@ -3511,11 +3307,7 @@ paths:
       responses:
         200:
           description: 'Creates a new instance of entity_with_embeddable'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -3571,20 +3363,10 @@ paths:
                         nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
       summary: 'create a new single instance of entity_with_embeddable'
@@ -3646,11 +3428,7 @@ paths:
       responses:
         200:
           description: 'Retrieves a single instance of entity_with_embeddable'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -3706,18 +3484,8 @@ paths:
                         nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
       summary: 'retrieve a single instance of entity_with_embeddable'
@@ -3726,11 +3494,7 @@ paths:
       responses:
         200:
           description: 'Retrieves and update a single instance of entity_with_embeddable'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -3786,22 +3550,12 @@ paths:
                         nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
         415:
           $ref: '#/components/responses/InvalidFormat'
         422:
           $ref: '#/components/responses/ValidationError'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
       summary: 'modify a single instance of entity_with_embeddable'
@@ -3862,23 +3616,9 @@ paths:
       responses:
         204:
           description: 'Deletes a single instance of entity_with_embeddable'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
-        401:
-          $ref: '#/components/responses/NotAuthorized'
+          headers: {  }
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - entity_with_embeddable
       summary: 'delete a single instance of entity_with_embeddable'
@@ -3897,10 +3637,16 @@ paths:
         200:
           description: 'Retrieves all instances of application_info'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -3946,16 +3692,6 @@ paths:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - application_info
       summary: 'get/search all instances of application_info'
@@ -3981,10 +3717,16 @@ paths:
         200:
           description: 'Retrieves all instances of status'
           headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+            x-pagination-count:
+              $ref: '#/components/headers/Count'
+            x-pagination-previous:
+              $ref: '#/components/headers/Url'
+            x-pagination-next:
+              $ref: '#/components/headers/Url'
+            x-pagination-first:
+              $ref: '#/components/headers/Url'
+            x-pagination-last:
+              $ref: '#/components/headers/Url'
           content:
             application/json:
               schema:
@@ -4040,16 +3782,6 @@ paths:
                     name: item
                 xml:
                   name: response
-        401:
-          $ref: '#/components/responses/NotAuthorized'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - status
       summary: 'get/search all instances of status'
@@ -4080,11 +3812,7 @@ paths:
       responses:
         200:
           description: 'Retrieves a single instance of status'
-          headers:
-            x-ratelimit-limit:
-              $ref: '#/components/headers/x-ratelimit-limit'
-            x-ratelimit-remaining:
-              $ref: '#/components/headers/x-ratelimit-remaining'
+          headers: {  }
           content:
             application/json:
               schema:
@@ -4134,18 +3862,8 @@ paths:
                     nullable: false
                 xml:
                   name: item
-        401:
-          $ref: '#/components/responses/NotAuthorized'
         404:
           $ref: '#/components/responses/NotFound'
-        429:
-          $ref: '#/components/responses/TooManyRequests'
-        500:
-          $ref: '#/components/responses/InternalError'
-        502:
-          $ref: '#/components/responses/ServerDependencyError'
-        503:
-          $ref: '#/components/responses/MaintenanceMode'
       tags:
         - status
       summary: 'retrieve a single instance of status'
@@ -4183,6 +3901,15 @@ components:
   responses:
     InvalidFormat:
       description: 'The body input could not be parsed'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: 'Response when resource could not be found'
       content:
         application/json:
           schema:
@@ -4241,68 +3968,14 @@ components:
                     type: string
             xml:
               name: response
-    TooManyRequests:
-      description: 'Too many requests per seconds were sent'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Error'
-    MaintenanceMode:
-      description: 'App is in maintenance mode'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: 'Response when resource could not be found'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotAuthorized:
-      description: 'You have no permission to do this call'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: 'An internal error occured'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerDependencyError:
-      description: 'The server required an external response which threw an error'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Error'
   headers:
-    x-ratelimit-limit:
-      description: 'Request limit per hour'
+    Count:
+      description: 'number of results'
       schema:
-        type: integer
-      example: 100
-    x-ratelimit-remaining:
-      description: 'Request limit per hour'
+        type: number
+        format: int
+    Url:
+      description: 'pagination url'
       schema:
-        type: integer
-      example: 94
+        type: string
+        format: url
